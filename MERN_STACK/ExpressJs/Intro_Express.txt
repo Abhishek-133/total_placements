@@ -1,0 +1,6 @@
+1.Express is a fast, assertive, essential and moderate web framework of Node.js. You can assume express as a layer built on the top of the Node.js that helps manage a server and routes. It provides a robust set of features to develop web and mobile applications.
+
+2.Why ExpressJs:
+Asynchronous and single threaded
+Robust API makes routing easy
+Ultra fast I/O
