@@ -1,0 +1,162 @@
+16
+import java.util.*;
+public class Main
+{
+	public static void main(String[] args) {
+		System.out.println("Hello World");
+		String s = "abcabcbb";
+		int l  = 0;
+		int r = 0;
+		int res = 0;
+		Set<Character> set = new HashSet<>();
+		for(r=0;r<s.length();r++){
+		    char c = s.charAt(r);
+		
+		    while(set.contains(c)){
+		        set.remove(c);
+		        l++;
+		    }
+		    set.add(c);
+		    res = Math.max(res,r-l+1);
+		}
+		System.out.print("res->"+res);
+		
+	}
+}
+
+17.
+
+18.
+import java.util.*;
+public class Main{
+    public static void main(String[] args) {
+        String s1 = "ab", s2 = "eidbaooo";
+        if (s1.length() > s2.length()) {
+            System.out.println("False");
+        }
+
+        int[] freq1 = new int[26];
+        int[] freq2 = new int[26];
+        int n = freq1.length;
+        int m = freq2.length;
+        boolean isEqual = false;
+
+        for (int i = 0; i < n; i++) {
+            freq1[s1.charAt(i) - 'a']++;
+        }
+
+        for (int j = 0; j < m; j++) {
+            freq2[s2.charAt(j) - 'a']++;
+
+            if (j >= n) {
+                freq2[s2.charAt(j - n) - 'a']--;
+            }
+
+            if (Arrays.equals(freq1, freq2)) {
+                isEqual = true;
+            }
+        }
+
+        if (isEqual) {
+            System.out.print("true");
+        } else {
+            System.out.print("false");
+        }
+    }
+}
+
+
+//21.valid parantheseis
+import java.util.*;
+public class Main{
+    public static void main(String[] args) {
+    //   String s = "()";
+      String s = "()[]{}[";
+       Stack<Character> stk = new Stack<>();
+       for(char c:s.toCharArray()){
+           if(c=='('||c=='['||c=='{'){
+               stk.push(c);
+           }
+           else{
+           if(stk.isEmpty())System.out.print("f");
+           if(c==')'&&stk.peek()=='('||
+           c==']'&&stk.peek()=='['||
+           c=='}'&&stk.peek()=='{'
+           ){
+               stk.pop();
+           }
+       }
+       }
+       
+       if(stk.isEmpty()){
+           System.out.print("t");
+       }else{
+           System.out.print("f");
+       }
+       
+    }
+}
+
+//evaluate reverse polish notation
+import java.util.*;
+public class Main{
+    public static void main(String[] args) {
+    Stack<Integer> stk = new Stack<>();
+    String[] tokens = {"4","13","5","/","+"};
+    for(String val:tokens){
+        if(val.equals("+")){
+            int n1 = stk.pop();
+            int n2 = stk.pop();
+            int res = n2+n1;
+            stk.push(res);
+        }else if(val.equals("-")){
+            int n1 = stk.pop();
+            int n2 = stk.pop();
+            int res = n2-n1;
+            stk.push(res);
+        }else if(val.equals("*")){
+            int n1 = stk.pop();
+            int n2 = stk.pop();
+            int res = n2*n1;
+            stk.push(res);
+        }else if(val.equals("/")){
+            int n1 = stk.pop();
+            int n2 = stk.pop();
+            int res = n2/n1;
+            stk.push(res);
+        }else{
+            int n = Integer.parseInt(val);
+            stk.push(n);
+        }
+    }
+    System.out.print(stk.peek());
+    }
+}
+
+24.//Backtracking
+
+25.
+import java.util.*;
+public class Main{
+    public static void main(String[] args) {
+    int[] temperatures = {73,74,75,71,69,72,76,73};
+    int n=temperatures.length;
+        int[] arr=new int[n];
+        Stack<Integer> stk=new Stack<>();
+        for(int currDay=0;currDay<n;currDay++){
+            int todayTemp=temperatures[currDay];
+            while(!stk.isEmpty()&&temperatures[stk.peek()]<todayTemp){
+                int prevDay=stk.pop();
+                
+                arr[prevDay]=currDay-prevDay;
+            }
+            stk.push(currDay);
+            
+           
+        }
+        for(int i:arr){
+                System.out.print(i+"->");
+            }
+    }
+}
+
