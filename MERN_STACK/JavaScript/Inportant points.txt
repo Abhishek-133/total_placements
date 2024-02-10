@@ -1,1 +1,2 @@
 1.JavaScript can change HTML content
+2.Javascript is a dynamic interpreted language and it is also client side scripting lanuage used for creating dynamic web pages.
