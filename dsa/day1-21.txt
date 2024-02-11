@@ -160,3 +160,173 @@ public class Main{
     }
 }
 
+29.Search in a matrix using binary search
+class Solution {
+    public boolean searchMatrix(int[][] matrix, int target) {
+        int rows = matrix.length;
+        int cols = matrix[0].length;
+        
+        int left = 0;
+        int right = rows*cols-1;
+        while(left<=right){
+            int mid = (left+right)/2;
+            int midValue = matrix[mid/cols][mid%cols];
+            if(midValue==target){
+                return true;
+            }
+            else if(midValue<target){
+                left = mid+1;
+            }else{
+                right = mid-1;
+            }
+        }
+        return false;
+    }
+}
+
+//Sorting algorithms leetcode
+1.O(N*N)
+import java.util.*;
+public class Main
+{
+	public static void main(String[] args) {
+	//Bubble short
+	int[] nums = {5,1,4,2,8};
+	for(int i=0;i<nums.length;i++){
+	    for(int j=0;j<nums.length-i-1;j++){
+	        if(nums[j]>nums[j+1]){
+	            int temp = nums[j];
+	            nums[j] = nums[j+1];
+	            nums[j+1] = temp;
+	        }
+	    }
+	}
+	for(int val:nums){
+	    System.out.print(val+" ");
+	}
+	}
+}
+2.Selection Sort
+import java.util.*;
+public class Main
+{
+	public static void main(String[] args) {
+		
+	int[] arr = {5,1,4,2,8};
+	    int n = arr.length;
+	    for(int i=0;i<n-1;i++){
+	        int minIndex = i;
+	        for(int j =i+1;j<n;j++){
+	            if(arr[minIndex]>arr[j]){
+	                minIndex = j;
+	            }
+	            
+	        }
+	        int temp = arr[i];
+	            arr[i] = arr[minIndex];
+	            arr[minIndex] = temp;
+	    }
+	    for(int val:arr){
+	        System.out.print(val+" ");
+	    }
+	}
+}
+
+3.Insertion code in java
+public class InsertionSort {
+    public static void sort(int arr[]) {
+        int n = arr.length;
+        for (int i = 1; i < n; ++i) {
+            int key = arr[i];
+            int j = i - 1;
+            while (j >= 0 && arr[j] > key) {
+                arr[j + 1] = arr[j];
+                j = j - 1;
+            }
+            arr[j + 1] = key;
+        }
+    }
+
+    public static void printArray(int arr[]) {
+        int n = arr.length;
+        for (int i = 0; i < n; ++i)
+            System.out.print(arr[i] + " ");
+        System.out.println();
+    }
+
+    public static void main(String args[]) {
+        int arr[] = { 12, 11, 13, 5, 6 };
+        InsertionSort ob = new InsertionSort();
+        ob.sort(arr);
+        printArray(arr);
+    }
+}
+
+4.Merge Sort
+public class MergeSort {
+    public static void mergeSort(int[] arr, int left, int right) {
+        if (left < right) {
+            int mid = (left + right) / 2;
+            mergeSort(arr, left, mid);
+            mergeSort(arr, mid + 1, right);
+            merge(arr, left, mid, right);
+        }
+    }
+
+    public static void merge(int[] arr, int left, int mid, int right) {
+        int n1 = mid - left + 1;
+        int n2 = right - mid;
+
+        int[] leftArr = new int[n1];
+        int[] rightArr = new int[n2];
+
+        for (int i = 0; i < n1; ++i)
+            leftArr[i] = arr[left + i];
+        for (int j = 0; j < n2; ++j)
+            rightArr[j] = arr[mid + 1 + j];
+
+        int i = 0, j = 0;
+        int k = left;
+        while (i < n1 && j < n2) {
+            if (leftArr[i] <= rightArr[j]) {
+                arr[k] = leftArr[i];
+                i++;
+            } else {
+                arr[k] = rightArr[j];
+                j++;
+            }
+            k++;
+        }
+
+        while (i < n1) {
+            arr[k] = leftArr[i];
+            i++;
+            k++;
+        }
+
+        while (j < n2) {
+            arr[k] = rightArr[j];
+            j++;
+            k++;
+        }
+    }
+
+    public static void main(String[] args) {
+        int[] arr = { 12, 11, 13, 5, 6, 7 };
+        System.out.println("Given Array");
+        printArray(arr);
+
+        mergeSort(arr, 0, arr.length - 1);
+
+        System.out.println("\nSorted array");
+        printArray(arr);
+    }
+
+    public static void printArray(int[] arr) {
+        int n = arr.length;
+        for (int i = 0; i < n; ++i)
+            System.out.print(arr[i] + " ");
+        System.out.println();
+    }
+}
+
